@@ -28,7 +28,7 @@ const UrlShortner = () => {
 
     if (originalUrl.startsWith("https://")) {
       try {
-        const res = await axios.post(`http://localhost:8000/url/short-url`, {
+        const res = await axios.post(`https://mini-bitly.onrender.com/url/short-url`, {
           originalUrl,
           shortUrl,
           userId,
@@ -49,7 +49,7 @@ const UrlShortner = () => {
 
   const handleOnLink = async (shortCode) => {
     try {
-      const res = await axios.post('http://localhost:8000/url/short-url/fetch', {
+      const res = await axios.post('https://mini-bitly.onrender.com/url/short-url/fetch', {
         shortUrl: shortCode,
       });
 
@@ -62,7 +62,7 @@ const UrlShortner = () => {
 
   const handleGenerateQR = async (shortCode) => {
     try {
-      const res = await axios.post(`http://localhost:8000/url/short-url/fetch`, {
+      const res = await axios.post(`https://mini-bitly.onrender.com/url/short-url/fetch`, {
         shortUrl: shortCode,
       });
       setQrUrl(res.data.originalUrl);

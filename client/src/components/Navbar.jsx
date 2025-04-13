@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BsList, BsX } from 'react-icons/bs'; // Bootstrap icons
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showText, setShowText] = useState(false);
   const navigate = useNavigate();
   const isAuthRoute = localStorage.getItem('token');
+  const user = useSelector((state) => state.auth.user?.email);
+
+  useEffect(() => {
+    if (isAuthRoute) {
+      setShowText(true);
+    } else {
+      setShowText(false);
+    }
+  }, [isAuthRoute]);
+  
 
   const logout = () => {
     alert('Logout successfully');
@@ -18,6 +31,7 @@ const Navbar = () => {
   };
 
   return (
+    <>
     <div className="w-full fixed md:top-1 top-1 md:p-5 z-50  ">
       <div className="max-w-7xl mx-auto px-6 py-3 bg-black text-white flex items-center justify-between shadow-md md:rounded-full md:border border-blue-200">
         <Link to="/" className="text-2xl font-bold">
@@ -103,6 +117,14 @@ const Navbar = () => {
         </div>
       )}
     </div>
+  {isAuthRoute && showText && 
+  <span className=' animate-bounce fixed z-50 bottom-2 left-2 px-4 py-2 bg-black text-white rounded-full  border border-blue-200'>{`Hello ${user}, welcome to mini Bitly website `}  
+  <button className=' bg-slate-900 px-4 ml-2 rounded-full border'
+   onClick={()=>setShowText(false)}
+  >close</button>
+  </span>
+  }
+</>
   );
 };
 

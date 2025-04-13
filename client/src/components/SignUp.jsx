@@ -23,14 +23,14 @@ const SignUp = () => {
     e.preventDefault();
     const { email, password } = formData;
 
-    await axios.post(`http://localhost:8000/auth/user/signup`, { email, password })
+    await axios.post(`https://mini-bitly.onrender.com/auth/user/signup`, { email, password })
       .then((res) => {
         console.table(res.data);
         alert("signup successfully, Thank you!")
         navigate("/login"); 
       }).catch((err) => {
         console.log(err);
-        alert(err.response.data.msg);
+        alert(err);
 
         const ans = confirm("This user already registered, you want to navigate login 🤔");
         if(ans){

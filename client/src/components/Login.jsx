@@ -25,7 +25,7 @@ const Login = () => {
         e.preventDefault();
         const { email, password } = formData;
         try {
-            const res = await axios.post("http://localhost:8000/auth/user/login", {
+            const res = await axios.post("https://mini-bitly.onrender.com/auth/user/login", {
                 email,
                 password,
             });

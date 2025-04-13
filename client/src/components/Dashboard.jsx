@@ -17,7 +17,7 @@ const Dashboard = () => {
   useEffect(() => {
     if (userId) {
       axios
-        .post('http://localhost:8000/url/short-url/my-urls', { userId })
+        .post('https://mini-bitly.onrender.com/url/short-url/my-urls', { userId })
         .then((res) => {
           setUrls(res.data);
         })
