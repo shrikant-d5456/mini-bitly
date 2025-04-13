@@ -1,7 +1,4 @@
 import Url from '../models/urlModel.js';
-import crypto from 'crypto';
-
-
 
 // Create a shortened URL
 export const createShortUrl = async (req, res) => {
